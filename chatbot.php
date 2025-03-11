@@ -58,6 +58,10 @@ if ($resposta === null) {
 // Simula resposta humana
 usleep(rand(2000000, 4000000)); // Entre 2 e 4 segundos
 
+// Inserir a mensagem e a resposta no banco de dados
+$stmt = $pdo->prepare("INSERT INTO messages (user_message, bot_response) VALUES (?, ?)");
+$stmt->execute([$message, $resposta]);
+
 // Envia a resposta para o usuário
 paramentros::send_response($resposta);
 ?>
